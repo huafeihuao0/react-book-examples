@@ -28,7 +28,7 @@ import DevTools from './redux/DevTools';
     const appContainer = document.getElementById('root');
     //react根组件
     const reactRoot =
-        <Provider store={appStore}>
+        <Provider store={appStore}> {/*提供store*/}
             <div>
                 {routes(routeHistory)}
                 <DevTools/>

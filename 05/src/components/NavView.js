@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-class Nav extends React.Component {
+class NavView extends React.Component {
   render() {
     return (
       <nav>
@@ -11,4 +11,4 @@ class Nav extends React.Component {
   }
 }
 
-export default Nav;
+export default NavView;

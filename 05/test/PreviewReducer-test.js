@@ -1,7 +1,7 @@
-import PreviewReducer, { LOAD_ARTICLES_SUCCESS } from '../src/components/Home/PreviewListRedux';
+import PreviewReducer, { LOAD_ARTICLES_SUCCESS } from '../src/components/Home/PreviewListViewRedux';
 import expect from 'expect.js';
 
-describe('Home', () => {
+describe('HomeVC', () => {
   it('PreviewReducer should propagate articles when loaded', () => {
     const articles = [{
       title: '测试内容1'

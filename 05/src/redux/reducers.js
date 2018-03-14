@@ -1,5 +1,5 @@
-import home from '../views/HomeRedux';
+import homeVCRedux from '../vcs/HomeVCRedux';
 
 export default {
-  home,
+  home: homeVCRedux,
 };

@@ -1,7 +1,7 @@
 import React from 'react';
-import './Preview.css';
+import './PreviewView.css';
 
-class Preview extends React.Component {
+class PreviewView extends React.Component {
   static propTypes = {
     title: React.PropTypes.string,
     link: React.PropTypes.string,
@@ -31,4 +31,4 @@ class Preview extends React.Component {
   }
 }
 
-export default Preview;
+export default PreviewView;

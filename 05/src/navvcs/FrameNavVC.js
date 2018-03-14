@@ -1,7 +1,7 @@
 import React from 'react';
-import Nav from './Nav';
+import Nav from '../components/NavView';
 
-class Frame extends React.Component {
+class FrameNavVC extends React.Component {
   render() {
     return (
       <div className="frame">
@@ -16,4 +16,4 @@ class Frame extends React.Component {
   }
 }
 
-export default Frame;
+export default FrameNavVC;
