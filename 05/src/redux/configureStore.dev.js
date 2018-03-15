@@ -1,35 +1,57 @@
-import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
-import { routerReducer, routerMiddleware } from 'react-router-redux';
-import { browserHistory } from 'react-router';
-
-import createFetchMiddleware from 'redux-composable-fetch';
+/**
+ * 生成appStore
+ * */
+import {applyMiddleware, combineReducers, compose, createStore} from 'redux';
+//【router】
+import {browserHistory} from 'react-router';
+import {routerMiddleware, routerReducer} from 'react-router-redux';
+//【thunk】可以分发函数型action
 import ThunkMiddleware from 'redux-thunk';
-import rootReducer from './reducers';
+//复合请求中间件
+import createFetchMiddleware from 'redux-composable-fetch';
+//应用全部的reduces
+import appReducers from './appReducers';
+//开发工具
 import DevTools from './DevTools';
 
-const FetchMiddleware = createFetchMiddleware({
-  afterFetch({ action, result }) {
-    return result.json().then(data => {
-      return Promise.resolve({
-        action,
-        result: data,
-      });
+//异步请求action中间件
+const FetchMiddleware = createFetchMiddleware(
+    {
+        afterFetch({action, result})//fetch后回调
+        {
+            return result.json().then(data =>
+            {
+                return Promise.resolve( //解决
+                    {
+                        action,
+                        result: data,
+                    });
+            });
+        },
     });
-  },
-});
 
-const finalCreateStore = compose(
-  applyMiddleware(ThunkMiddleware, FetchMiddleware, routerMiddleware(browserHistory)),
-  DevTools.instrument()
+//组合中间件的增强型store创建器
+const finalCreateStore = compose
+(
+    applyMiddleware //应用多个中间件
+    (
+        ThunkMiddleware, //支持函数型action的中间件
+        FetchMiddleware, //复合型请求中间件
+        routerMiddleware(browserHistory) //应用路由中间件
+    ),
+    DevTools.instrument()//开发工具监测
 )(createStore);
 
-const reducer = combineReducers({
-  ...rootReducer,
-  routing: routerReducer,
-});
+//组合应用全部reduces
+const appAllReduces = combineReducers(
+    {
+        ...appReducers,
+        routing: routerReducer, //组合路由的reducer
+    });
 
-export default function configureStore(initialState) {
-  const store = finalCreateStore(reducer, initialState);
+export default function appStoreCreator(initialState)
+{
+    const appStore = finalCreateStore(appAllReduces, initialState);
 
-  return store;
+    return appStore;
 }

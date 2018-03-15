@@ -9,7 +9,7 @@ import {connect} from 'react-redux';
 import {push} from 'react-router-redux';
 
 //该视图控制器的所有可能意图
-import {actions} from './HomeVCRedux';
+import {actions} from '../redux/vcredux/HomeVCRedux';
 
 //预览列表组件
 import PreviewListView from '../components/Home/PreviewListView';

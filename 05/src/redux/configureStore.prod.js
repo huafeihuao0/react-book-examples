@@ -4,7 +4,7 @@ import { hashHistory } from 'react-router';
 
 import createFetchMiddleware from 'redux-composable-fetch';
 import ThunkMiddleware from 'redux-thunk';
-import rootReducer from './reducers';
+import rootReducer from './appReducers';
 
 const FetchMiddleware = createFetchMiddleware({
   afterFetch({ action, result }) {
